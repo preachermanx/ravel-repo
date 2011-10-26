@@ -3,15 +3,20 @@ cookbooks:
 - chef-client:
 - java:
 - ntp:
+- sudo:
 - users:
 
 roles:
 - base:
 
-# data bags:
-# - users:
+data bags:
+  - users:
+    - mray
 
 nodes:
 - ec2 1:
   - role[base]
-  - -i ~/.ssh/mray.pem -x user --sudo -d ubuntu10.04-gems
+  - -i ~/.ssh/mray.pem -I ami-214c8348 -S mray -x ubuntu -d ubuntu10.04-gems
+- rackspace 1:
+  - role[base]
+  - --image 49 --flavor 2

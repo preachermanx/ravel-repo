@@ -5,5 +5,16 @@ run_list(
   "recipe[chef-client]",
   "recipe[java::sun]",
   "recipe[ntp]",
+  "recipe[sudo]",
   "recipe[users::sysadmins]"
+  )
+
+default_attributes(
+  "authorization" => {
+    "sudo" => {
+      "groups" => ["admin", "wheel", "sysadmin"],
+      "users" => ["mray"],
+      "passwordless" => true
+    }
+  }
   )
