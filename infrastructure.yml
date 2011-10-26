@@ -1,0 +1,17 @@
+cookbooks:
+- apt:
+- chef-client:
+- java:
+- ntp:
+- users:
+
+roles:
+- base:
+
+# data bags:
+# - users:
+
+nodes:
+- ec2 1:
+  - role[base]
+  - -i ~/.ssh/mray.pem -x user --sudo -d ubuntu10.04-gems
